@@ -1,0 +1,23 @@
+                            wiki - math
+              mise à jour pour la version 1.1.0
+à part pour l'affichage il est conseiller d'utiliser love.update
+
+-------- ajout v 0.1.2 (fichier module)
+déplacer en 1.1.0 (fichier lua+)
+modul.show( list ) pas d'emplacement spésiphique
+entré = table
+sortie = str
+utilité -> permet d'afficher une list
+
+-------- ajout v 1.1.0 (fichier module)
+déplacer en 1.0.0 (fichier lua+)
+luaP.isOneClicked( button ) n'a pas d'emplacement spésiphique
+entrée = number/int
+sortie = bool
+utilité -> ne renvoie qu'une seul foit true si le bouton spésifier est entrée
+
+-------- ajout v 1.0.0
+luaP.checkType( var, verif, message )
+entrée = non def, str, str
+sortie = None
+utilité -> permet de savoir si une variable est du bon type. si se n'est pas du même type alor il renvérat un message d'erreur rentrée 
