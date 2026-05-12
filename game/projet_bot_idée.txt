@@ -1,0 +1,5 @@
+ajoutée un zoom
+
+
+revoir le système de mouvement monde fixe avec camméra 
+le système or champ doit être adapter avec celui de génération

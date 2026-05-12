@@ -1,0 +1,14 @@
+                                objectif
+
+v 2 pofinage
+revoir pour center et tout se qui va avec pour l'adaptation et la facilité de programmation
+voir pour la souri (utile)
+voir pour diminuer le nombre de varaible présent
+
+v 3
+crée une gestion de données : utiliser le cmd et un txt
+    - bdd
+    - init
+    - réc
+    - save/modif(criptée les donnnée)
+plus gestion annexe

@@ -1,0 +1,190 @@
+                            wiki - objet
+              mise à jour pour la version 1.2.0
+à part pour l'affichage il est conseiller d'utiliser love.update
+création objet -> les variable à mettre dans la fonction create pour pouvoir l'utilisé sur l'objet
+
+fonctionnement des vertion : 
+      v -> version
+      1 -> version du module (ne change qu'à l'ajout d'un dossier)
+      .2 -> version du fichier (ne change qu'à l'ajout de fonction)
+      .0 -> correction ou ajout mineur / modification de fonction existente
+
+liste des version : (les chiffre avec tirée sont les mise à jour de correction de bug sans rien modifier réelement)
+      v 0.1.0
+      v 0.2.0 (aucune info)
+      v 0.2.1
+      v 0.2.2
+      v 0.3.0
+      v 0.4.0
+      v 0.4.1
+      v 1.0.0
+      v 1.1.0
+      v 1.1.1
+      v 1.1.2
+      v 1.1.3
+      v 1.1.4
+      v 1.1.5
+      v 1.2.0-1-2-3
+      v 1.3.0
+
+ATTENTION : la taille de l'image doit être petit
+
+les variable demander comme :
+  - gravity
+  - jumpPower
+  - x
+  - y
+  - width
+  - height
+  - scroll
+  - r, g, b
+  - decalx |
+  - decaly | crée juste un décalage entre leur coordonée et le texture
+  - TestGlobalMouv
+non pas forcément besoin d'être entré (vous aurez des valeur par défaut)
+
+
+-------- ajout v 1.3.0
+objet:wait( time )
+création objet = nil
+entrée = int
+sortie = bool
+utilité -> revérat un true si le temps entrée en argument passe sinon false
+
+
+-------- ajout v 1.2.0
+objet.globalmouv(mouv_x, mouv_y, TestDecal) love.update/draw (de préférence avant les calcul de collision)
+entrée = int, int, bool
+sortie = nil
+utilité -> permet le mouvement de tout les objet sauf se dont TestGlobalMouv = false
+spécifisité -> si TestDecal est sur True alor l'affichage de des objets va boujet mais pas leur coordonée (utilise GlobalDecalx et GlobalDecaly)
+
+
+-------- ajout v 1.1.0
+modif : v 1.2.0 : GlobalDecalx, GlobalDecaly, Globlax, Globlay
+la table objet contient les variable suivant :
+      window_height
+      window_width
+      center
+      GlobalScroll
+      GlobalDecalx
+      GlobalDecaly
+      Globlax
+      Globlay
+
+
+-------- ajout v 1.1.0
+modif : v 1.1.2 : ajout de la variable mode
+objet:draw() doit se mettre dans love.draw()
+entrée : 'rectangle ou nil'
+  création objet = x, y, (rayon ou width, height ou image)
+  sortie = nil
+  utilité -> affiche un rectangle
+
+entrée : 'circle'
+  création objet = x, y, rayon
+  sortie = nil
+  utilité -> affiche un cercle
+
+entrée : 'image'
+  création objet = x, y, image
+  sortie = nil
+  utilité -> affiche une image
+
+
+-------- ajout v 0.4.0
+modif : v 0.4.1 : modification du nom isCliked -> mouseIsPass
+modif : v 1.1.4 : prend en compte decalx et decaly
+objet:mouseIsPass() n'a pas d'emplacement spécifique
+création objet = x, y, (rayon ou width, height)
+entrée = nil
+sortie = bool
+utilité -> savoir si la souris passe au dessus de l'objet
+
+
+-------- ajout v 0.1.0
+la fonction qu'update utilise:
+    modul.objet.update_all_objet()
+    création objet = nil
+    entré = nil
+    sortie = nil
+    utilité -> update le fichier objet 
+               va mettre à jour :
+                  window_height et window_width
+
+
+-------- ajout v 0.1.0
+modif : v 1.1.4 : ajout du decalage + TestDecal
+objet:mouv(mouv_x, mouv_y, TestDecal) love.update/draw (de préférence avant les calcul de collision)
+création objet = x, y
+entrée = int, int, bool
+sortie = nil
+utilité -> permet le mouvement de l'objet cible
+spécifisité -> si TestDecal est sur True alor l'affichage de l'objet va boujet mais pas c'est coordonée (utilise decalx et decaly)
+
+
+-------- ajout v 0.1.0
+objet = modul.objet.create{} n'a pas d'emplacement spécifique
+entrée se que vous voulez avec se qui est conseiller dans les autres fonction
+sortie = nil
+
+
+-------- ajout v 0.1.0
+modif : v 0.3.0 : ajout de la prise ne compte du gui et de c'est spécificité
+modif : v 1.1.3 : suprésion de la prise en charge des particularité du gui
+modif : v 1.1.4 : adaptation aux nouvelle spécificité de mouv()
+modif : v 1.2.0 : adaptation aux spécificité de globalmouv()
+----------------------
+objet:setAffichagePosition() n'a pas d'emplacement spécifique
+création objet = x, y, gui
+entrée = nil
+sortie = nil
+utilité -> permet d'avoir un affichage propre
+
+
+-------- ajout v 0.1.0
+objet:collision_obj( cible ) peux se mettre dans : love.update()/draw()  -- le terme collision -> touche l'autre objet
+création objet = x, y, (rayon ou width, height)
+entrée = un element de classe objet
+sortie = bool
+utilité -> savoir si l'objet touche un autre
+attention : ne prend pas en compte decalx et decaly
+
+
+-------- ajout v 0.1.0
+objet:test_collision( list ) n'a pas d'emplacemet spécifique
+création objet = x, y, (rayon ou width, height)
+entrée = list contenant des élément de classe objet
+sortie = nil
+utilité -> permet d'avoir un système de collision plus propre sur plusieur objet à la fois
+          ATTENTION si une collision est déttecter alors le personnage va reculer pour un simple test utilisé collision_obj
+peut affécter :
+  - saut
+attention : ne prend pas en compte decalx et decaly
+
+
+-------- ajout v 0.1.0
+objet:aplly_gravity() n'a pas d'emplacement spécifique
+création objet = y, gravity
+entrée = nil
+sortie = nil
+utilité -> affectect la variable y pour donné une impression de chute
+peut affécter :
+  - test_collision
+
+
+-------- ajout v 0.1.0
+objet:saut() n'a pas d'emplacement spécifique
+création objet = jumpPower
+entrée = nil
+sortie = nil
+utilité -> dans le nom
+peut affécter :
+  - aplly_gravity
+
+
+-------- ajout v 0.1.0
+objet:updateGravityCollision( list ) peux se mettre dans love.update()/draw()
+entrée = list
+sortie = nil
+utilité -> mes à jour la gravité et les collision en permanance de l'objet si mis dans une boucle

@@ -1,0 +1,15 @@
+                                objectif
+
+++ pofinage
+revoir pour center et tout se qui va avec pour l'adaptation et la facilité de programmation
+voir pour la souri (utile)
+voir pour diminuer le nombre de varaible présent
+
+idée :
+    - anotée ++
+    - simplifier le code d'objet
+    - refair la liste de collisione le saut et la graviter
+    - ajout de plus de draw possible
+	
+    faire un petit programme interne permétant de récupérer les coordonnée d'un objet/text avec sa taille seulement
+    (on récupérat les coordonée dans une liste qu'on sauvegardera)
