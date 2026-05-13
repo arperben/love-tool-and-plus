@@ -20,13 +20,22 @@ end
 function objet.globalmouv(mouv_x,mouv_y,TestDecal)
     
     if TestDecal == nil then -- le test calsic ne fonctionne pas avec des booléen
-        TestDecal = true end
+        TestDecal = true 
+    end
     mouv_x = mouv_x or 0
     mouv_y = mouv_y or 0
     
-    if not(type(mouv_x) == 'number') then error"la variable mouv_x n'est pas un nombre" end
-    if not(type(mouv_y) == 'number') then error"la variable mouv_y n'est pas un nombre" end
-    if not(type(TestDecal) == 'boolean') then error"la variable TestForValFic n'est pas un booléen" end
+    -- série de test des fonction de l'objet et de leur variable pour éviter les erreur de type
+    luaP.checkType(mouv_x, "number", "la variable mouv_x n'est pas un nombre")
+    luaP.checkType(mouv_y, "number", "la variable mouv_y n'est pas un nombre")
+
+    luaP.checkType(TestDecal, "boolean", "la variable TestForValFic n'est pas un booléen")
+
+    luaP.checkType(objet.Globalx, "number", "la variable Globalx n'est pas un nombre")
+    luaP.checkType(objet.Globaly, "number", "la variable Globaly n'est pas un nombre")
+
+    luaP.checkType(objet.GlobalDecalx, "number", "la variable GlobalDecalx n'est pas un nombre")
+    luaP.checkType(objet.GlobalDecaly, "number", "la variable GlobalDecaly n'est pas un nombre")
 
     if TestDecal then
         objet.Globalx = objet.Globalx + mouv_x
@@ -39,13 +48,22 @@ end
 function objet:mouv(mouv_x,mouv_y,TestDecal)
     
     if TestDecal == nil then -- le test calssic ne fonctionne pas avec des booléen
-        TestDecal = true end
+        TestDecal = true
+    end
     mouv_x = mouv_x or 0
     mouv_y = mouv_y or 0
     
-    if not(type(mouv_x) == 'number') then error"la variable mouv_x n'est pas un nombre" end
-    if not(type(mouv_y) == 'number') then error"la variable mouv_y n'est pas un nombre" end
-    if not(type(TestDecal) == 'boolean') then error"la variable TestForValFic n'est pas un booléen" end
+    -- série de test des fonction de l'objet et de leur variable pour éviter les erreur de type
+    luaP.checkType(mouv_x, "number", "la variable mouv_x n'est pas un nombre")
+    luaP.checkType(mouv_y, "number", "la variable mouv_y n'est pas un nombre")
+
+    luaP.checkType(TestDecal, "boolean", "la variable TestForValFic n'est pas un booléen")
+
+    luaP.checkType(self.x, "number", "la variable x n'est pas un nombre")
+    luaP.checkType(self.y, "number", "la variable y n'est pas un nombre")
+
+    luaP.checkType(self.Decalx, "number", "la variable Decalx n'est pas un nombre")
+    luaP.checkType(self.Decaly, "number", "la variable Decaly n'est pas un nombre")
 
     if TestDecal then
         self.x = self.x + mouv_x
@@ -59,6 +77,8 @@ end
 function objet:create(t) 
 
     t = t or {} -- ma list
+
+    luaP.checkType(t, 'table', "la variable t n'est pas une table")
 
     -- init de tout les les variable qui ne doit pas être modifier
     t.saut_test = false   -- le joueur est-il en train de sauter
@@ -119,6 +139,15 @@ function objet:setAffichagePosition()
         mouvy = 0
     end
 
+    luaP.checkType(self.x, 'number', "la variable x n'est pas un nombre")
+    luaP.checkType(self.y, 'number', "la variable y n'est pas un nombre")
+    luaP.checkType(self.ficX, 'number', "la variable ficX n'est pas un nombre")
+    luaP.checkType(self.ficY, 'number', "la variable ficY n'est pas un nombre")
+    luaP.checkType(self.decalx, 'number', "la variable decalx n'est pas un nombre")
+    luaP.checkType(self.decaly, 'number', "la variable decaly n'est pas un nombre")
+    luaP.checkType(objet.window_height, 'number', "la variable window_height n'est pas un nombre")
+    luaP.checkType(objet.window_width, 'number', "la variable window_width n'est pas un nombre")
+
     if objet.center then --permet de centrer mon objet
         self.ficX = self.x + objet.window_height/2 + self.decalx + decalx + mouvy
         self.ficY = self.y + objet.window_width/2 + self.decaly + decaly + mouvy
@@ -175,7 +204,21 @@ end
 
 function objet:collision_obj( cible )
     -- cible est l'objet dont on veut faire une test de collision
-    print(cible.height,cible.width, self.height, self.width)
+    
+    luaP.checkType(cible, 'table', "la variable cible n'est pas une table")
+    
+    luaP.checkType(cible.x, 'number', "la variable x de cible n'est pas un nombre")
+    luaP.checkType(cible.y, 'number', "la variable y de cible n'est pas un nombre")
+
+    luaP.checkType(cible.width, 'number', "la variable width de cible n'est pas un nombre")
+    luaP.checkType(cible.height, 'number', "la variable height de cible n'est pas un nombre")
+
+    luaP.checkType(self.x, 'number', "la variable x n'est pas un nombre")
+    luaP.checkType(self.y, 'number', "la variable y n'est pas un nombre")
+
+    luaP.checkType(self.width, 'number', "la variable width n'est pas un nombre")
+    luaP.checkType(self.height, 'number', "la variable height n'est pas un nombre")
+
     return self.x  < cible.x + cible.width
        and self.x + self.width > cible.x
        and self.y < cible.y + cible.height
@@ -197,6 +240,7 @@ function objet:mouseIsPass()
     end
 
     if not(objet.center) then
+        print(self.x + self.decalx + decalx + mouvx)
         return self.x + self.decalx + decalx + mouvx < love.mouse.getX()
             and self.x + self.width + self.decalx + decalx + mouvx > love.mouse.getX() + 1 -- pour quelle soyent un peut plus grande
             and self.y + self.decaly + decaly + mouvy < love.mouse.getY()

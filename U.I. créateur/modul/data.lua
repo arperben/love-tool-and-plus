@@ -52,7 +52,7 @@ function dt.save_txt(name, data)
         error("nameFichier doit être de type string")
     end
     if type(data) == "table" then
-        data = modul.show(data)
+        data = luaP.show(data)
     elseif type(data) ~= "string" then
         error("data doit être de type string ou table")
     end
