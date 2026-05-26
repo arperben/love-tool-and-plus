@@ -33,6 +33,12 @@ perso2 = modul.objet:create{
    b = 255
 }
 
+image1 = modul.objet:create{
+   x = 0,
+   y = 0,
+   --img = love.graphics.newImage("new_project.png")
+}
+
 modul.dt.save_txt("save.txt", {perso2, perso})
 
 function love.keypressed(key, scancode, isrepeat)
