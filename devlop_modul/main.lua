@@ -8,14 +8,15 @@ lo = {sol = modul.objet:create{
    x = -500,
    y = -50,
    height = 50,
-   width = 1000
+   width = 1000,
+   r = 0,
 }}
 
 temoin = modul.objet:create{
    x = -100,
    y = -100,
    height = 100,
-   width = 100
+   width = 100,
 }
 
 perso = modul.objet:create{
@@ -36,7 +37,7 @@ perso2 = modul.objet:create{
 image1 = modul.objet:create{
    x = 0,
    y = 0,
-   --img = love.graphics.newImage("new_project.png")
+   img = "test.png"
 }
 
 modul.dt.save_txt("save.txt", {perso2, perso})
@@ -93,6 +94,8 @@ function love.draw()
    perso:draw('circle')
    perso2:draw('circle')
    temoin:draw()
+   image1:draw()
+   love.graphics.draw(love.graphics.newImage( "test.png" ), 0, 100)
 end
 
 function love.quit()

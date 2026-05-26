@@ -1,6 +1,6 @@
 ---------
 -- objet
--- v1.2.3
+-- v1.3.1
 ---------
 
 local objet = {
@@ -12,6 +12,7 @@ local objet = {
     GlobalDecalx = 0,
     GlobalDecaly = 0
 }
+local luaP = require("modul/lua+")
 
 function objet.update_all_objet()
     objet.window_height,objet.window_width = love.window.getMode()
@@ -62,8 +63,8 @@ function objet:mouv(mouv_x,mouv_y,TestDecal)
     luaP.checkType(self.x, "number", "la variable x n'est pas un nombre")
     luaP.checkType(self.y, "number", "la variable y n'est pas un nombre")
 
-    luaP.checkType(self.Decalx, "number", "la variable Decalx n'est pas un nombre")
-    luaP.checkType(self.Decaly, "number", "la variable Decaly n'est pas un nombre")
+    luaP.checkType(self.decalx, "number", "la variable decalx n'est pas un nombre")
+    luaP.checkType(self.decaly, "number", "la variable decaly n'est pas un nombre")
 
     if TestDecal then
         self.x = self.x + mouv_x
@@ -85,6 +86,10 @@ function objet:create(t)
     t.onGround = false   -- le joueur ne touche pas le sol
     t.vy = 0
     t.time = love.timer.getTime()
+    t.ficX = 0
+    t.ficY = 0
+    t.decalx = 0
+    t.decaly = 0
 
     -- init de tout les variable modifiable
     if t.TestGlobalMouv == nil then
@@ -101,7 +106,7 @@ function objet:create(t)
     t.decalx = t.decalx or 0
     t.decaly = t.decaly or 0
 
-    if not(t.img == nil) then
+    if not(t.img == nil) then -- à refaire car trop de faille
         t.img = love.graphics.newImage( t.img )
     end
 
@@ -196,7 +201,7 @@ function objet:draw( typ, mode )
     elseif typ == 'circle' then
         love.graphics.circle(mod, self.ficX+self.rayon, self.ficY+self.rayon, self.rayon, 100)
 
-    elseif typ == 'image' then
+    elseif typ == 'image' then -- à modifier
         love.graphics.draw( self.img, self.ficX, self.ficY )
     end
 end
