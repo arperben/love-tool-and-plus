@@ -201,7 +201,7 @@ function objet:draw( typ, mode )
     elseif typ == 'circle' then
         love.graphics.circle(mod, self.ficX+self.rayon, self.ficY+self.rayon, self.rayon, 100)
 
-    elseif typ == 'image' then -- à modifier
+    elseif typ == 'image' then -- crée un carrée blanc dans n'import quel cas
         love.graphics.draw( self.img, self.ficX, self.ficY )
     end
 end
@@ -251,7 +251,6 @@ function objet:mouseIsPass()
             and self.y + self.decaly + decaly + mouvy < love.mouse.getY()
             and self.y + self.height + self.decaly + decaly + mouvy > love.mouse.getY() + 1 
     else
-        --   position x  taille écran    décalage int cecal glob mouv glob    
         return self.x + objet.window_height/2 + self.decalx + decalx + mouvx < love.mouse.getX()
             and self.x + self.width + objet.window_height/2 + self.decalx + decalx + mouvx > love.mouse.getX() + 1
             and self.y + objet.window_width/2 + self.decaly + decaly + mouvy < love.mouse.getY()

@@ -1,0 +1,4 @@
+                                objectif
+
+améliorer le système de collision 
+augmenté les possibiliter de draw
