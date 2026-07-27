@@ -25,7 +25,7 @@ liste des version : (les chiffre avec tirée sont les mise à jour de correction
       v 1.1.4
       v 1.1.5
       v 1.2.0-1-2-3
-      v 1.3.0-1
+      v 1.3.0-1-2
 
 les variable demander comme :
   - gravity
@@ -73,6 +73,7 @@ la table objet contient les variable suivant :
 
 -------- ajout v 1.1.0
 modif : v 1.1.2 : ajout de la variable mode
+patche : v 1.3.2 : correction de mode qui était mal écrit dans le code
 objet:draw() doit se mettre dans love.draw()
 entrée : 'rectangle ou nil'
   création objet = x, y, (rayon ou width, height ou image)

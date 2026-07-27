@@ -166,7 +166,7 @@ end
 
 function objet:draw( typ, mode )
     typ = typ or 'rectangle' 
-    mod = mod or 'fill'
+    mode = mode or 'fill'
 
     ----------------- test les erreur -----------------------
     if self.height == nil then error"il manque la variable heigth pour exécuter se programme" end -- heigth
@@ -196,12 +196,12 @@ function objet:draw( typ, mode )
     love.graphics.setColor( love.math.colorFromBytes( self.r, self.g, self.b ) )
 
     if typ == 'rectangle' then
-        love.graphics.rectangle(mod, self.ficX, self.ficY, self.width, self.height)
+        love.graphics.rectangle(mode, self.ficX, self.ficY, self.width, self.height)
 
     elseif typ == 'circle' then
-        love.graphics.circle(mod, self.ficX+self.rayon, self.ficY+self.rayon, self.rayon, 100)
+        love.graphics.circle(mode, self.ficX+self.rayon, self.ficY+self.rayon, self.rayon, 100)
 
-    elseif typ == 'image' then -- crée un carrée blanc dans n'import quel cas
+    elseif typ == 'image' then
         love.graphics.draw( self.img, self.ficX, self.ficY )
     end
 end

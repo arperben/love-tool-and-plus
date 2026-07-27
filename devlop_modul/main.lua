@@ -94,7 +94,7 @@ function love.draw()
    perso:draw('circle')
    perso2:draw('circle')
    temoin:draw()
-   image1:draw()
+   image1:draw("image")
    love.graphics.draw(love.graphics.newImage( "test.png" ), 0, 100)
 end
 
