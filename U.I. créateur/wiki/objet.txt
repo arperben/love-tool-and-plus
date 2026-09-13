@@ -1,5 +1,5 @@
                             wiki - objet
-              mise à jour pour la version 1.2.0
+              mise à jour pour la version 1.3.1
 à part pour l'affichage il est conseiller d'utiliser love.update
 création objet -> les variable à mettre dans la fonction create pour pouvoir l'utilisé sur l'objet
 
@@ -25,9 +25,7 @@ liste des version : (les chiffre avec tirée sont les mise à jour de correction
       v 1.1.4
       v 1.1.5
       v 1.2.0-1-2-3
-      v 1.3.0
-
-ATTENTION : la taille de l'image doit être petit
+      v 1.3.0-1-2
 
 les variable demander comme :
   - gravity
@@ -39,7 +37,7 @@ les variable demander comme :
   - scroll
   - r, g, b
   - decalx |
-  - decaly | crée juste un décalage entre leur coordonée et le texture
+  - decaly | crée juste un décalage entre leur coordonée et la texture
   - TestGlobalMouv
 non pas forcément besoin d'être entré (vous aurez des valeur par défaut)
 
@@ -75,6 +73,7 @@ la table objet contient les variable suivant :
 
 -------- ajout v 1.1.0
 modif : v 1.1.2 : ajout de la variable mode
+patche : v 1.3.2 : correction de mode qui était mal écrit dans le code
 objet:draw() doit se mettre dans love.draw()
 entrée : 'rectangle ou nil'
   création objet = x, y, (rayon ou width, height ou image)

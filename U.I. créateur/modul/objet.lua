@@ -1,6 +1,6 @@
 ---------
 -- objet
--- v1.2.3
+-- v1.3.1
 ---------
 
 local objet = {
@@ -12,6 +12,8 @@ local objet = {
     GlobalDecalx = 0,
     GlobalDecaly = 0
 }
+local luaP = require("modul/lua+")
+objet.__index = objet
 
 function objet.update_all_objet()
     objet.window_height,objet.window_width = love.window.getMode()
@@ -62,8 +64,8 @@ function objet:mouv(mouv_x,mouv_y,TestDecal)
     luaP.checkType(self.x, "number", "la variable x n'est pas un nombre")
     luaP.checkType(self.y, "number", "la variable y n'est pas un nombre")
 
-    luaP.checkType(self.Decalx, "number", "la variable Decalx n'est pas un nombre")
-    luaP.checkType(self.Decaly, "number", "la variable Decaly n'est pas un nombre")
+    luaP.checkType(self.decalx, "number", "la variable decalx n'est pas un nombre")
+    luaP.checkType(self.decaly, "number", "la variable decaly n'est pas un nombre")
 
     if TestDecal then
         self.x = self.x + mouv_x
@@ -85,6 +87,10 @@ function objet:create(t)
     t.onGround = false   -- le joueur ne touche pas le sol
     t.vy = 0
     t.time = love.timer.getTime()
+    t.ficX = 0
+    t.ficY = 0
+    t.decalx = 0
+    t.decaly = 0
 
     -- init de tout les variable modifiable
     if t.TestGlobalMouv == nil then
@@ -101,7 +107,7 @@ function objet:create(t)
     t.decalx = t.decalx or 0
     t.decaly = t.decaly or 0
 
-    if not(t.img == nil) then
+    if not(t.img == nil) then -- à refaire car trop de faille
         t.img = love.graphics.newImage( t.img )
     end
 
@@ -121,7 +127,6 @@ function objet:create(t)
     t.img = t.img or 'not'
 
     setmetatable( t, self )
-    self.__index = self
     return t
 end
 
@@ -161,7 +166,7 @@ end
 
 function objet:draw( typ, mode )
     typ = typ or 'rectangle' 
-    mod = mod or 'fill'
+    mode = mode or 'fill'
 
     ----------------- test les erreur -----------------------
     if self.height == nil then error"il manque la variable heigth pour exécuter se programme" end -- heigth
@@ -191,10 +196,10 @@ function objet:draw( typ, mode )
     love.graphics.setColor( love.math.colorFromBytes( self.r, self.g, self.b ) )
 
     if typ == 'rectangle' then
-        love.graphics.rectangle(mod, self.ficX, self.ficY, self.width, self.height)
+        love.graphics.rectangle(mode, self.ficX, self.ficY, self.width, self.height)
 
     elseif typ == 'circle' then
-        love.graphics.circle(mod, self.ficX+self.rayon, self.ficY+self.rayon, self.rayon, 100)
+        love.graphics.circle(mode, self.ficX+self.rayon, self.ficY+self.rayon, self.rayon, 100)
 
     elseif typ == 'image' then
         love.graphics.draw( self.img, self.ficX, self.ficY )
@@ -246,7 +251,6 @@ function objet:mouseIsPass()
             and self.y + self.decaly + decaly + mouvy < love.mouse.getY()
             and self.y + self.height + self.decaly + decaly + mouvy > love.mouse.getY() + 1 
     else
-        --   position x  taille écran    décalage int cecal glob mouv glob    
         return self.x + objet.window_height/2 + self.decalx + decalx + mouvx < love.mouse.getX()
             and self.x + self.width + objet.window_height/2 + self.decalx + decalx + mouvx > love.mouse.getX() + 1
             and self.y + objet.window_width/2 + self.decaly + decaly + mouvy < love.mouse.getY()

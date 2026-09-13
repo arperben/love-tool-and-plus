@@ -46,16 +46,7 @@ end
 function love.keypressed(keys)
     
     if (keys == 'z' and love.keyboard.isDown({'rctrl','lctrl'})) and #listObjet > 0 then -- annuler
-
-        if type(action_utilisateur[#action_utilisateur]) == 'number' then
-            table.insert(cache, listObjet[#listObjet])
-            table.remove(listObjet,#listObjet)
-
-        elseif type(action_utilisateur[#action_utilisateur]) == 'table' then
-            table.insert(listObjet, action_utilisateur[#action_utilisateur].position, action_utilisateur[#action_utilisateur])
-            table.insert(cache, action_utilisateur[#action_utilisateur].position)
-            table.remove(action_utilisateur, #action_utilisateur)
-        end
+        action.ctr_z()
     end
 
     if keys == 's' and love.keyboard.isDown({'rctrl','lctrl'}) then

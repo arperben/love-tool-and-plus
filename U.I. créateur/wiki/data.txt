@@ -1,5 +1,5 @@
                             wiki - math
-              mise à jour pour la version 1.1.1
+              mise à jour pour la version 1.0.0
 à part pour l'affichage il est conseiller d'utiliser love.update
 
 liste des version : (les chiffre avec tirée sont les mise à jour de correction de bug sans rien modifier réelement)
@@ -12,7 +12,7 @@ liste des version : (les chiffre avec tirée sont les mise à jour de correction
 dt.save_txt(name, data) n'a pas d'emplacement spésifique
 entrée = str, tout 
 sortie = nil
-utilité -> sert à sauvegarder des données dans un nouveaux fichier ou un ficher déjà crée sans encodée ,i avoir de limite
+utilité -> sert à sauvegarder des données dans un nouveaux fichier ou un ficher déjà crée sans encodée
 
 
 -------- ajout v 1.0.0

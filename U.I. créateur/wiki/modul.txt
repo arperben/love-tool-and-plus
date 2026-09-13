@@ -1,18 +1,11 @@
                             wiki - modul
-              mise à jour pour la version 1.1.1
+              mise à jour pour la version 1.1.2
 à part pour l'affichage il est conseiller d'utiliser love.update
 
 version :
         v 0.1.1
         v 0.1.2
-        v 1.1.1
-
-
--------- ajout v 0.1.2
-modul.show( list ) pas d'emplacement spésiphique
-entré = table
-sortie = str
-utilité -> permet d'afficher une list
+        v 1.1.1-2
 
 
 -------- ajout v 0.1.1

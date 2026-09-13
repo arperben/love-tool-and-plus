@@ -1,6 +1,13 @@
                             wiki - math
-              mise à jour pour la version 1.0.0
+              mise à jour pour la version 1.1.0
 à part pour l'affichage il est conseiller d'utiliser love.update
+
+-------- ajout v 0.1.2 (fichier module)
+déplacer en 1.1.0 (fichier lua+)
+modul.show( list ) pas d'emplacement spésiphique
+entré = table
+sortie = str
+utilité -> permet d'afficher une list
 
 -------- ajout v 1.1.0 (fichier module)
 déplacer en 1.0.0 (fichier lua+)

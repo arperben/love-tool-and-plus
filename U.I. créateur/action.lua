@@ -81,4 +81,16 @@ function creerObjet(height, width, x, y, categorie)
     end
 end
 
+function action.ctr_z()
+    if type(action_utilisateur[#action_utilisateur]) == 'number' then
+            table.insert(cache, listObjet[#listObjet])
+            table.remove(listObjet,#listObjet)
+
+    elseif type(action_utilisateur[#action_utilisateur]) == 'table' then
+        table.insert(listObjet, action_utilisateur[#action_utilisateur].position, action_utilisateur[#action_utilisateur])
+        table.insert(cache, action_utilisateur[#action_utilisateur].position)
+        table.remove(action_utilisateur, #action_utilisateur)
+    end
+end
+
 return action

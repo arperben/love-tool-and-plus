@@ -4,7 +4,7 @@
 
 -- TSerial (version compatible Lua moderne / LÖVE 11.x)
 -- basé sur TSerial v1.3 de Taehl
--- remit au propre et à jour pour les version actuelle
+-- remit au propre et à jour pour les version actuelles de Lua et LÖVE
 
 local TSerial = {}
 
