@@ -13,6 +13,7 @@ local objet = {
     GlobalDecaly = 0
 }
 local luaP = require("modul/lua+")
+objet.__index = objet
 
 function objet.update_all_objet()
     objet.window_height,objet.window_width = love.window.getMode()
@@ -126,7 +127,6 @@ function objet:create(t)
     t.img = t.img or 'not'
 
     setmetatable( t, self )
-    self.__index = self
     return t
 end
 
