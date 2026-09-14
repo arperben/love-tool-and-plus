@@ -1,6 +1,0 @@
-                                objectif
-
-améliorer le système de collision 
-augmenté les possibiliter de draw
-revoir le système de la class objet pour diminuer l'utilisation de la mémoir et les perf
-canvas pour l'affichage activable/désactivable
