@@ -15,6 +15,6 @@ dévlopee en paralle un ide pour löve
   - éviter l'anglais je ne suis pas bilingue
   - je m'excuse pour tout faute d'orthographe. j'essaye de m'améllioré mais c'est compliqué avec une disorthographie (problème à orthographier)
 
-mise à jour 1.3.3 pour le modul de dévloppement:
+mise à jour 1.3.3 pour objet dans le modul de dévloppement:
   - correction d'optimisation
   - modification de la prise en charge des image (plus d'info dans le dossier wiki)
