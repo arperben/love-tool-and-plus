@@ -26,6 +26,7 @@ liste des version : (les chiffre avec tirée sont les mise à jour de correction
       v 1.1.5
       v 1.2.0-1-2-3
       v 1.3.0-1-2
+      v 1.3.3
 
 les variable demander comme :
   - gravity
@@ -60,6 +61,7 @@ spécifisité -> si TestDecal est sur True alor l'affichage de des objets va bou
 
 -------- ajout v 1.1.0
 modif : v 1.2.0 : GlobalDecalx, GlobalDecaly, Globlax, Globlay
+modif : v 1.3.3 : list_image
 la table objet contient les variable suivant :
       window_height
       window_width
@@ -69,11 +71,13 @@ la table objet contient les variable suivant :
       GlobalDecaly
       Globlax
       Globlay
+      list_image (si vous voulez utiliser des image il faut les mettre dedans en utilisant love.graphics.newImage( nom du fichier image ))
 
 
 -------- ajout v 1.1.0
 modif : v 1.1.2 : ajout de la variable mode
 patche : v 1.3.2 : correction de mode qui était mal écrit dans le code
+modif : v 1.3.3 : modification de l'affichage d'image en rapport des modification d'optimisation liez à celui ci
 objet:draw() doit se mettre dans love.draw()
 entrée : 'rectangle ou nil'
   création objet = x, y, (rayon ou width, height ou image)
@@ -86,7 +90,8 @@ entrée : 'circle'
   utilité -> affiche un cercle
 
 entrée : 'image'
-  création objet = x, y, image
+  warning : vous devez mettre l'image dans la liste objet:list_image
+  création objet = x, y, ind_img
   sortie = nil
   utilité -> affiche une image
 

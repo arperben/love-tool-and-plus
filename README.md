@@ -14,3 +14,7 @@ dévlopee en paralle un ide pour löve
   - si possible mettre à jour le "wiki" c'est à titre indicatif (essayer de suivre la manière dont je les fait)
   - éviter l'anglais je ne suis pas bilingue
   - je m'excuse pour tout faute d'orthographe. j'essaye de m'améllioré mais c'est compliqué avec une disorthographie (problème à orthographier)
+
+mise à jour 1.3.3 pour le modul de dévloppement:
+  - correction d'optimisation
+  - modification de la prise en charge des image (plus d'info dans le dossier wiki)

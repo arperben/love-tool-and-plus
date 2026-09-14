@@ -11,6 +11,7 @@ local objet = {
     Globaly = 0,
     GlobalDecalx = 0,
     GlobalDecaly = 0
+    list_image = {}
 }
 local luaP = require("modul/lua+")
 objet.__index = objet
@@ -107,24 +108,20 @@ function objet:create(t)
     t.decalx = t.decalx or 0
     t.decaly = t.decaly or 0
 
-    if not(t.img == nil) then -- à refaire car trop de faille
-        t.img = love.graphics.newImage( t.img )
-    end
-
     if  not(t.rayon == nil) then -- c'est pour les calcul de collision vu que je ne gère que des quadrilède
         t.width = t.rayon*2
         t.height = t.rayon*2
     end
 
-    if (not(t.width) or not(t.height)) and t.img then -- idem juste avec les image
-        t.width = t.img:getWidth()
-        t.height = t.img:getHeight()
+    if (not(t.width) or not(t.height)) and t.ind_img then -- idem juste avec les image. si ind_image est vide on eu peut récup l'image voulu
+        t.width = objes.list_image:getWidth()
+        t.height = objes.list_image:getHeight()
     end
 
     t.rayon = t.rayon or 0
     t.width = t.width or 0
     t.height = t.height or 0
-    t.img = t.img or 'not'
+    t.ind_img = t.ind_img or 1 -- index par défaut il peut renvoyer une erreur si la list d'image est vide
 
     setmetatable( t, self )
     return t
@@ -184,8 +181,7 @@ function objet:draw( typ, mode )
     if self.y == nil then error"il manque la variable y pour exécuter se programme" end -- y
     if not(type(self.y) == 'number') then error"la variable y n'est pas du type 'number'" end
 
-    if self.img == nil then error"il manque la variable img pour exécuter se programme" end -- img
-    --if not(type(self.img) == 'number') then error"la variable img n'est pas du type 'number'" end
+    luaP.checkType(self.ind_img, 'number', "la variable ind_img n'est pas un nombre")
 
     if self.r == nil or self.g == nil or self.b == nil then error"l'une des varaibles couleur (r, g, b) est de type 'nil'" end -- r, g, b
     if not(type(self.r) == 'number' or type(self.g) == 'number' or type(self.b) == 'number') then error"la variable y n'est pas du type 'number'" end
@@ -202,7 +198,7 @@ function objet:draw( typ, mode )
         love.graphics.circle(mode, self.ficX+self.rayon, self.ficY+self.rayon, self.rayon, 100)
 
     elseif typ == 'image' then
-        love.graphics.draw( self.img, self.ficX, self.ficY )
+        love.graphics.draw( objet.list_image[self.ind_img], self.ficX, self.ficY )
     end
 end
 ---------------------------------------------

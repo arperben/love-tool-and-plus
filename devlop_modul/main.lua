@@ -3,6 +3,10 @@
 local modul=require("modul/modul")
 
 modul.objet.center = true
+modul.objet.list_image = {
+   love.graphics.newImage("test.png"),
+   love.graphics.newImage("new_project.png")
+}
 
 lo = {sol = modul.objet:create{
    x = -500,
@@ -95,7 +99,7 @@ function love.draw()
    perso2:draw('circle')
    temoin:draw()
    image1:draw("image")
-   love.graphics.draw(love.graphics.newImage( "test.png" ), 0, 100)
+   love.graphics.draw(love.graphics.newImage( "new_project.png" ), 0, 100)
 end
 
 function love.quit()
