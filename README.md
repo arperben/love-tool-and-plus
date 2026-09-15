@@ -1,6 +1,20 @@
 # löve tool and plus
 
-en dévloppement
+Under development
+
+- Adds more functionality to LÖVE
+- Adds development tools
+
+An IDE for LÖVE is being developed in parallel
+
+Things to know when modifying my project:
+  - I am still a student and am teaching myself to code in Lua
+  - I would like the project to avoid becoming overly complex so that I can still keep track of it
+  - Please take all files into account before making any modifications
+  - If possible, please update the "wiki" (it serves as a reference; try to follow the format I used)
+  - I don't mind English; if I use English (like I am doing here), I will handle the translation
+
+partit Français, en dévloppement:
 
 - rajoute plus de fonctionalité à löve
 - rajoute des outils de dévlopement
@@ -14,7 +28,3 @@ dévlopee en paralle un ide pour löve
   - si possible mettre à jour le "wiki" c'est à titre indicatif (essayer de suivre la manière dont je les fait)
   - éviter l'anglais je ne suis pas bilingue
   - je m'excuse pour tout faute d'orthographe. j'essaye de m'améllioré mais c'est compliqué avec une disorthographie (problème à orthographier)
-
-mise à jour 1.3.3 pour objet dans le modul de dévloppement:
-  - correction d'optimisation
-  - modification de la prise en charge des image (plus d'info dans le dossier wiki)

@@ -16,13 +16,14 @@ local objet = {
 local luaP = require("modul/lua+")
 objet.__index = objet
 
-function objet.update_all_objet()
+function objet.update_all_objet() 
+    -- on mes à jour la taille de l'écrant pour que le programme puisse s'adapter à la taille de l'écrant
     objet.window_height,objet.window_width = love.window.getMode()
 end
 
 function objet.globalmouv(mouv_x,mouv_y,TestDecal)
     
-    if TestDecal == nil then -- le test calsic ne fonctionne pas avec des booléen
+    if TestDecal == nil then -- le test classique ne fonctionne pas avec des booléen
         TestDecal = true 
     end
     mouv_x = mouv_x or 0
@@ -141,6 +142,7 @@ function objet:setAffichagePosition()
         mouvy = 0
     end
 
+    -- test des variable pour éviter les erreur de type
     luaP.checkType(self.x, 'number', "la variable x n'est pas un nombre")
     luaP.checkType(self.y, 'number', "la variable y n'est pas un nombre")
     luaP.checkType(self.ficX, 'number', "la variable ficX n'est pas un nombre")
