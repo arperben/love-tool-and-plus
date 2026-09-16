@@ -1,5 +1,9 @@
                                 objectif
 
 améliorer le système de collision 
-augmenté les possibiliter de draw
-canvas pour l'affichage activable/désactivable
+4- canvas pour la gestion de plusieur élément simultanément voir aussi pour toute élément
+
+
+3- terminer d'augmenté les possibiliter de la fonction draw
+2- prise en voir ajout et compatibiliter rotate et translate. et voire si aucun problème
+1- voir pour utiliser translate et voir les différent problème
