@@ -10,7 +10,7 @@ local objet = {
     Globalx = 0,
     Globaly = 0,
     GlobalDecalx = 0,
-    GlobalDecaly = 0
+    GlobalDecaly = 0,
     list_image = {}
 }
 local luaP = require("modul/lua+")
