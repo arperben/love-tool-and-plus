@@ -9,6 +9,7 @@ modul.objet.list_image = {
 }
 
 lo = {sol = modul.objet:create{
+   mode = "rectangle",
    x = -500,
    y = -50,
    height = 50,
@@ -17,6 +18,7 @@ lo = {sol = modul.objet:create{
 }}
 
 temoin = modul.objet:create{
+   mode = "rectangle",
    x = -100,
    y = -100,
    height = 100,
@@ -24,12 +26,14 @@ temoin = modul.objet:create{
 }
 
 perso = modul.objet:create{
+   mode = "circle",
    x = 0,
    y = -100,
    rayon = 5
 }
 
 perso2 = modul.objet:create{
+   mode = "circle",
    x = -300,
    y = -300,
    rayon = 10,
@@ -39,9 +43,10 @@ perso2 = modul.objet:create{
 }
 
 image1 = modul.objet:create{
+   mode = 'image',
    x = 0,
    y = 0,
-   img = "test.png"
+   ind_img = 1,
 }
 
 modul.dt.save_txt("save.txt", {perso2, perso})
@@ -97,10 +102,7 @@ function love.draw()
    lo.sol:draw('rectangle', 'line')
    perso:draw('circle')
    perso2:draw('circle')
-   love.graphics.push()
-   love.graphics.translate(100, 100)
    temoin:draw()
-   love.graphics.pop()
    image1:draw("image")
    love.graphics.draw(love.graphics.newImage( "new_project.png" ), 0, 100)
 end

@@ -26,7 +26,6 @@ function luaP.show(list)
             item = luaP.show(item)
         end
         message = message .. tostring(item) .. ", "
-        print(message)
     end
     message = "[" ..message .. "]"
     return message

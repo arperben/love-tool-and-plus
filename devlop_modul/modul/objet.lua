@@ -78,55 +78,108 @@ function objet:mouv(mouv_x,mouv_y,TestDecal)
     end
 end
 
+-- __________________________________________________________________________________
+--|-- fonction d'initialisation des paramètre de l'objet ----------------------------|
+--|__________________________________________________________________________________|
+--
+
+function objet:parametreRectangle()
+    -- taille
+    self.width = self.width or 0
+    self.height = self.height or 0
+    -- position
+    self.x = self.x or 0
+    self.y = self.y or 0
+end
+
+function objet:parametreImage()
+    -- position
+    self.x = self.x or 0
+    self.y = self.y or 0
+
+    -- taille image
+    if not(self.width) or not(self.height) then -- on charge la taille de l'image si elle n'est pas défini
+        self.width = objet.list_image[self.ind_img]:getWidth()
+        self.height = objet.list_image[self.ind_img]:getHeight()
+    end
+end
+
+function objet:parametreCircle()
+    -- position
+    self.x = self.x or 0
+    self.y = self.y or 0
+
+    -- rayon
+    self.rayon = self.rayon or 0
+
+    self.width = self.rayon*2
+    self.height = self.rayon*2
+end
+
+function objet:parametrePhysique()
+    -- physique
+    self.gravity = self.gravity or 0.5
+    self.jumpPower = self.jumpPower or 10
+
+    -- init de variable pour le saut et la gravité
+    self.vy = 0   -- vitesse verticale
+    self.saut_test = false   -- le joueur est-il en train de sauter
+    self.onGround = false   -- le joueur ne touche pas le sol
+end
+
+
+-- ________________________________________________________________________________________________
+--|-- fonction de création d'objet ----------------------------------------------------------------|
+--|________________________________________________________________________________________________|
+--
+
 function objet:create(t) 
 
     t = t or {} -- ma list
 
+    setmetatable( t, self )
+
     luaP.checkType(t, 'table', "la variable t n'est pas une table")
 
+    -- on regarde les paramètre à charger pour l'objet
+    t.mode = t.mode or "rectangle" -- par défaut c'est un rectangle
+    if t.mode == "rectangle" then t:parametreRectangle() end
+    if t.mode == "image" and (t.ind_img and objet.list_image[1]) then t:parametreImage() end
+    if t.mode == "circle" then t:parametreCircle() end
+
+    t:parametrePhysique() -- on l'execute direct il ne sert cas structurer
+
     -- init de tout les les variable qui ne doit pas être modifier
-    t.saut_test = false   -- le joueur est-il en train de sauter
-    t.onGround = false   -- le joueur ne touche pas le sol
-    t.vy = 0
     t.time = love.timer.getTime()
     t.ficX = 0
     t.ficY = 0
     t.decalx = 0
     t.decaly = 0
 
-    -- init de tout les variable modifiable
-    if t.TestGlobalMouv == nil then
-        t.TestGlobalMouv = true
-    end
+    -- paramètre générale affectent toute les possibiliter de l'objet
+    -- couleur
     t.r = t.r or 255
     t.g = t.g or 255
     t.b = t.b or 255
-    if t.scroll == nil then t.scroll = GlobalScroll end
-    t.gravity = t.gravity or 0.5
-    t.jumpPower = t.jumpPower or 10
-    t.x = t.x or 0
-    t.y = t.y or 0
+
+    if t.scroll == nil then t.scroll = GlobalScroll end -- revoir et mettre description
+
+    if t.TestGlobalMouv == nil then -- revoir et mettre description
+        t.TestGlobalMouv = true
+    end
     t.decalx = t.decalx or 0
     t.decaly = t.decaly or 0
 
-    if  not(t.rayon == nil) then -- c'est pour les calcul de collision vu que je ne gère que des quadrilède
-        t.width = t.rayon*2
-        t.height = t.rayon*2
-    end
-
-    if (not(t.width) or not(t.height)) and t.ind_img then -- idem juste avec les image. si ind_image est vide on eu peut récup l'image voulu
-        t.width = objes.list_image:getWidth()
-        t.height = objes.list_image:getHeight()
-    end
-
-    t.rayon = t.rayon or 0
-    t.width = t.width or 0
-    t.height = t.height or 0
     t.ind_img = t.ind_img or 1 -- index par défaut il peut renvoyer une erreur si la list d'image est vide
 
-    setmetatable( t, self )
     return t
 end
+
+
+-- ________________________________________________________________________________________________
+--|-- fonction pour l'affichage de la position ----------------------------------------------------|
+--|________________________________________________________________________________________________|
+--
 
 function objet:setAffichagePosition()
 
@@ -153,7 +206,7 @@ function objet:setAffichagePosition()
     luaP.checkType(objet.window_width, 'number', "la variable window_width n'est pas un nombre")
 
     if objet.center then --permet de centrer mon objet
-        self.ficX = self.x + objet.window_height/2 + self.decalx + decalx + mouvy
+        self.ficX = self.x + objet.window_height/2 + self.decalx + decalx + mouvx
         self.ficY = self.y + objet.window_width/2 + self.decaly + decaly + mouvy
     else
         self.ficX = self.x + self.decalx + decalx + mouvx
@@ -167,15 +220,7 @@ function objet:draw( typ, mode )
     typ = typ or 'rectangle' 
     mode = mode or 'fill'
 
-    ----------------- test les erreur -----------------------
-    if self.height == nil then error"il manque la variable heigth pour exécuter se programme" end -- heigth
-    if not(type(self.height) == 'number') then error"la variable height n'est pas du type 'number'" end
-
-    if self.width == nil then error"il manque la variable width pour exécuter se programme" end -- width
-    if not(type(self.width) == 'number') then error"la variable width n'est pas du type 'number'" end
-
-    if self.rayon == nil then error"il manque la variable rayon pour exécuter se programme" end -- rayon
-    if not(type(self.rayon) == 'number') then error"la variable rayon n'est pas du type 'number'" end
+    ----------------- test les erreurs -----------------------
 
     if self.x == nil then error"il manque la variable x pour exécuter se programme" end -- x
     if not(type(self.x) == 'number') then error"la variable x n'est pas du type 'number'" end
@@ -183,10 +228,8 @@ function objet:draw( typ, mode )
     if self.y == nil then error"il manque la variable y pour exécuter se programme" end -- y
     if not(type(self.y) == 'number') then error"la variable y n'est pas du type 'number'" end
 
-    luaP.checkType(self.ind_img, 'number', "la variable ind_img n'est pas un nombre")
-
     if self.r == nil or self.g == nil or self.b == nil then error"l'une des varaibles couleur (r, g, b) est de type 'nil'" end -- r, g, b
-    if not(type(self.r) == 'number' or type(self.g) == 'number' or type(self.b) == 'number') then error"la variable y n'est pas du type 'number'" end
+    if not(type(self.r) == 'number' or type(self.g) == 'number' or type(self.b) == 'number') then error"les variable couleur (r, g, b) n'est pas du type 'number'" end
     ---------------------------------------------------------
     
     self:setAffichagePosition()
@@ -194,12 +237,16 @@ function objet:draw( typ, mode )
     love.graphics.setColor( love.math.colorFromBytes( self.r, self.g, self.b ) )
 
     if typ == 'rectangle' then
+        luaP.checkType(self.width, 'number', " draw: la variable width n'est pas un nombre ou n'est pas défini")
+        luaP.checkType(self.height, 'number', " draw: la variable height n'est pas un nombre ou n'est pas défini")
         love.graphics.rectangle(mode, self.ficX, self.ficY, self.width, self.height)
 
     elseif typ == 'circle' then
+        luaP.checkType(self.rayon, 'number', " draw: la variable rayon n'est pas un nombre ou n'est pas défini")
         love.graphics.circle(mode, self.ficX+self.rayon, self.ficY+self.rayon, self.rayon, 100)
 
     elseif typ == 'image' then
+        luaP.checkType(self.ind_img, 'number', " draw: la variable ind_img n'est pas un nombre ou n'est pas défini")
         love.graphics.draw( objet.list_image[self.ind_img], self.ficX, self.ficY )
     end
 end
@@ -243,7 +290,6 @@ function objet:mouseIsPass()
     end
 
     if not(objet.center) then
-        print(self.x + self.decalx + decalx + mouvx)
         return self.x + self.decalx + decalx + mouvx < love.mouse.getX()
             and self.x + self.width + self.decalx + decalx + mouvx > love.mouse.getX() + 1 -- pour quelle soyent un peut plus grande
             and self.y + self.decaly + decaly + mouvy < love.mouse.getY()

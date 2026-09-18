@@ -1,2 +1,15 @@
                                 modif - mise à jour
     si vous ne le metter pas dans le wiki (anglais autorisé)
+
+mise à jour 0.2.0 | fichier objet version 1.4.0
+création des fonction:
+- parametreRectangle
+- parametreImage
+- parametreCircle
+- parametrePhysique
+
+modification de fonction
+ besoin de définire un mode non obligatoire mais primordiale pour le chargement des ressource
+
+modification à retenir pour la maj 0.2.0
+modification des erreur avec la préssision de le nom de la fonction
